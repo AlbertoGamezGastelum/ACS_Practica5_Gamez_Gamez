@@ -68,16 +68,4 @@ public class Base {
     public void waitForUrlContains(String text) {
         wait.until(ExpectedConditions.urlContains(text));
     }
-
-    // Seleccionar opcion de dropdown
-    public void selectOption(By option) {
-        wait.until(ExpectedConditions.elementToBeClickable(option));
-        driver.findElement(option).click();
-    }
-
-    // Buscar
-    public void search(By input, String text, By button) {
-        type(input, text);
-        click(button);
-    }
 }
