@@ -39,11 +39,11 @@ public class LoginTest extends Base {
     }
 
     @Test
-    public void TC003_camposVacios() {
+    public void TC003_loginCamposVacios() {
         System.out.println("Iniciando TC003");
         LoginPage login = new LoginPage(driver, wait);
         login.clickLogin();
-        boolean result = login.isRequiredDisplayed();
+        boolean result = login.areRequiredMessagesVisible();
         if (result) {
             System.out.println("TC003 PASS");
         } else {

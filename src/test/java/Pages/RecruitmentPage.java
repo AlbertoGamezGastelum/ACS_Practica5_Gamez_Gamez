@@ -4,6 +4,7 @@ import Base.Base;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class RecruitmentPage extends Base {
 
@@ -29,7 +30,11 @@ public class RecruitmentPage extends Base {
 
     public void selectJobTitle() {
         click(jobTitleDropdown);
-        click(firstOption);
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(firstOption));
+        wait.until(ExpectedConditions.elementToBeClickable(firstOption));
+
+        driver.findElement(firstOption).click();
     }
 
     public boolean isJobTitleSelected() {

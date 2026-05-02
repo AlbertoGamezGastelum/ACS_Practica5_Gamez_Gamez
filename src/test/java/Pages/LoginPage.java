@@ -14,7 +14,7 @@ public class LoginPage {
     By txtPassword = By.name("password");
     By btnLogin = By.xpath("//button[contains(@class,'orangehrm-login-button')]");
     By errorMessage = By.xpath("//div[@role='alert']//p");
-    By requiredMessage = By.xpath("//span[contains(@class,'oxd-input-field-error-message')]");
+    By requiredMessage = By.xpath("//span[text()='Required']");
 
     public LoginPage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
@@ -37,8 +37,9 @@ public class LoginPage {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(errorMessage)).getText();
     }
 
-    public boolean isRequiredDisplayed() {
-        return !driver.findElements(requiredMessage).isEmpty();
+    public boolean areRequiredMessagesVisible() {
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(requiredMessage));
+        return driver.findElements(requiredMessage).size() >= 2;
     }
 
     public void login(String user, String pass) {
